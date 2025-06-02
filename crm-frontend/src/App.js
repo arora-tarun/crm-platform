@@ -23,7 +23,8 @@ function App() {
   const [sidebarVisible, setSidebarVisible] = useState(true);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/auth/user', { withCredentials: true })
+    axios.get('axios.get('https://crm-platform-s759.onrender.com/auth/user', { withCredentials: true })
+', { withCredentials: true })
       .then(res => {
         setUser(res.data && res.data._id ? res.data : null);
       })
@@ -33,7 +34,8 @@ function App() {
 
   const handleLogout = async () => {
     try {
-      await axios.get('http://localhost:5000/auth/logout', { withCredentials: true });
+      await axios.get('await axios.get('https://crm-platform-s759.onrender.com/auth/logout', { withCredentials: true });
+', { withCredentials: true });
       setUser(null);
       window.location.href = '/';
     } catch (err) {
