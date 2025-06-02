@@ -1,8 +1,11 @@
 import axios from 'axios';
 
-const instance = axios.create({
-  baseURL: 'http://localhost:5000',
-  withCredentials: true
-});
+axios.get(`${process.env.REACT_APP_API_BASE_URL}/auth/user`, { withCredentials: true })
+  .then(response => {
+    // handle success
+  })
+  .catch(error => {
+    // handle error
+  });
 
 export default instance;
