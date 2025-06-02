@@ -53,10 +53,10 @@ const Dashboard = () => {
         setLoading(true);
         setError('');
 
-        const recentRes = await axios.get('http://localhost:5000/api/dashboard/recent');
+        const recentRes = await axios.get('https://crm-platform-s759.onrender.com/api/dashboard/recent');
         setRecentCustomers(recentRes.data);
 
-        const statsRes = await axios.get('http://localhost:5000/api/dashboard/stats');
+        const statsRes = await axios.get('https://crm-platform-s759.onrender.com/api/dashboard/stats');
         setStats(statsRes.data);
       } catch (err) {
         setError('Failed to load dashboard data. Please try again later.');
