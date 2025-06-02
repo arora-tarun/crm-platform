@@ -89,7 +89,7 @@ app.get('/auth/failure', (req, res) => {
 });
 
 // ======= Protected API Routes =======
-const { ensureAuthenticated } = require('./middleware/auth');
+const { ensureAuthenticated } = require('./middleware/authMiddleware');
 app.use('/api/customers', ensureAuthenticated, require('./routes/customers'));
 app.use('/api/campaigns', ensureAuthenticated, require('./routes/campaigns'));
 app.use('/api/logs', ensureAuthenticated, require('./routes/logs'));
