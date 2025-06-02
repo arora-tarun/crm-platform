@@ -11,7 +11,7 @@ const app = express();
 
 // ====== Middleware ======
 app.use(cors({
-  origin: 'https://crm-frontend-s759.onrender.com', // ✅ your frontend
+  origin: 'https://crm-frontend01-s759.onrender.com', // ✅ your frontend
   credentials: true
 }));
 
@@ -52,7 +52,7 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'em
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
-    res.redirect('https://crm-frontend-s759.onrender.com/dashboard'); // ✅ Frontend dashboard
+    res.redirect('https://crm-frontend01-s759.onrender.com/dashboard'); // ✅ Frontend dashboard
   }
 );
 
@@ -68,7 +68,7 @@ app.get('/auth/logout', (req, res, next) => {
   req.logout(function(err) {
     if (err) return next(err);
     res.clearCookie('connect.sid'); // Clear session cookie
-    res.redirect('https://crm-frontend-s759.onrender.com'); // redirect to frontend
+    res.redirect('https://crm-frontend01-s759.onrender.com'); // redirect to frontend
   });
 });
 
