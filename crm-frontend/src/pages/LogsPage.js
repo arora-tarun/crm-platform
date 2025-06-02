@@ -10,7 +10,7 @@ const LogsPage = () => {
     const fetchLogs = async () => {
       try {
         setLoading(true);
-        const res = await axios.get('http://localhost:5000/api/logs', { withCredentials: true });
+        const res = await axios.get('https://crm-frontend-s759.onrender.com/api/logs', { withCredentials: true });
         setLogs(res.data);
       } catch (err) {
         setError('Failed to load logs.');
