@@ -14,31 +14,27 @@ import MainContent from './components/MainContent';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
 import CampaignsPage from './pages/CampaignsPage';
-import CampaignCreation from './pages/CampaignCreation';  // <-- Import added here
+import CampaignCreation from './pages/CampaignCreation';
 import LogsPage from './pages/LogsPage';
 
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [sidebarVisible, setSidebarVisible] = useState(true);
-  useEffect(() => {
   const baseURL = process.env.REACT_APP_API_BASE_URL;
-  axios.get(`${baseURL}/auth/user`, { withCredentials: true });
 
-
+  useEffect(() => {
+    axios.get(`${baseURL}/auth/user`, { withCredentials: true })
       .then(res => {
         setUser(res.data && res.data._id ? res.data : null);
       })
       .catch(() => setUser(null))
       .finally(() => setLoading(false));
-}, []);
-
+  }, [baseURL]);
 
   const handleLogout = async () => {
     try {
       await axios.get(`${baseURL}/auth/logout`, { withCredentials: true });
-
-
       setUser(null);
       window.location.href = '/';
     } catch (err) {
@@ -66,7 +62,7 @@ function App() {
             <Route path="/profile" element={user ? <Profile /> : <Navigate to="/" />} />
             <Route path="/settings" element={user ? <Settings /> : <Navigate to="/" />} />
             <Route path="/campaigns" element={user ? <CampaignsPage /> : <Navigate to="/" />} />
-            <Route path="/campaigns/create" element={user ? <CampaignCreation /> : <Navigate to="/" />} /> {/* NEW */}
+            <Route path="/campaigns/create" element={user ? <CampaignCreation /> : <Navigate to="/" />} />
             <Route path="/logs" element={user ? <LogsPage /> : <Navigate to="/" />} />
           </Routes>
         </MainContent>
