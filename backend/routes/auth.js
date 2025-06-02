@@ -8,7 +8,8 @@ router.get(
   '/google/callback',
   passport.authenticate('google', { failureRedirect: '/auth/failure' }),
   (req, res) => {
-    res.redirect('http://localhost:3000/dashboard');
+    res.redirect('https://crm-platform-s759.onrender.com/auth/google/callback
+');
   }
 );
 
@@ -23,7 +24,7 @@ router.get('/user', (req, res) => {
 router.get('/logout', (req, res, next) => {
   req.logout(function(err) {
     if (err) return next(err);
-    res.redirect('http://localhost:3000');
+    res.redirect('https://crm-platform-s759.onrender.com/auth/google/callback');
   });
 });
 
