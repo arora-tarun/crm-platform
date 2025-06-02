@@ -23,7 +23,8 @@ function App() {
   const [sidebarVisible, setSidebarVisible] = useState(true);
 
   useEffect(() => {
-  axios.get('https://crm-platform-s759.onrender.com/auth/user', { withCredentials: true })
+  axios.get(`${process.env.REACT_APP_API_BASE_URL}/auth/user`, { withCredentials: true });
+
 
 
       .then(res => {
@@ -35,7 +36,7 @@ function App() {
 
   const handleLogout = async () => {
     try {
-      await axios.get('https://crm-platform-s759.onrender.com/auth/logout', { withCredentials: true });
+      await axios.get('${process.env.REACT_APP_API_BASE_URL}/auth/logout', { withCredentials: true });
 
       setUser(null);
       window.location.href = '/';
