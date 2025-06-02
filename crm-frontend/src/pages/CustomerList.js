@@ -13,7 +13,7 @@ function CustomerList() {
       try {
         setLoading(true);
         setError('');
-        const response = await axios.get('http://localhost:5000/api/customers', { withCredentials: true });
+        const response = await axios.get('https://crm-frontend-s759.onrender.com/api/customers', { withCredentials: true });
         setCustomers(response.data);
         setFilteredCustomers(response.data);
       } catch (err) {
