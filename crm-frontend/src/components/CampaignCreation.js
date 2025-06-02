@@ -14,7 +14,7 @@ function CampaignCreation() {
   useEffect(() => {
     const fetchAudienceCount = async () => {
       try {
-        const response = await axios.post("http://localhost:5000/api/customers/preview", { segment });
+        const response = await axios.post("https://crm-platform-s759.onrender.com/api/customers/preview", { segment });
         setAudienceCount(response.data.count);
       } catch (error) {
         console.error("Error fetching audience preview:", error);
@@ -32,7 +32,7 @@ function CampaignCreation() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/api/campaigns", {
+      const response = await axios.post("https://crm-platform-s759.onrender.com/api/campaigns", {
         name: campaignName,
         segment
       });
