@@ -8,7 +8,7 @@ router.get(
   '/google/callback',
   passport.authenticate('google', { failureRedirect: '/auth/failure' }),
   (req, res) => {
-    res.redirect('https://crm-platform-s759.onrender.com/auth/google/callback');
+    res.redirect('https://crm-frontend-s759.onrender.com/dashboard');
   }
 );
 
@@ -23,7 +23,7 @@ router.get('/user', (req, res) => {
 router.get('/logout', (req, res, next) => {
   req.logout(function(err) {
     if (err) return next(err);
-    res.redirect('https://crm-frontend-s759.onrender.com/auth/google/callback');
+    res.redirect('https://crm-frontend-s759.onrender.com/');
   });
 });
 
