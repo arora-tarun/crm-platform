@@ -26,7 +26,7 @@ const CampaignCreation = () => {
     };
 
     try {
-      await axios.post('http://localhost:5000/api/campaigns', payload, { withCredentials: true });
+      await axios.post('https://crm-frontend-s759.onrender.com/api/campaigns', payload, { withCredentials: true });
       navigate('/campaigns');
     } catch (err) {
       setError('Failed to save campaign. Try again.');
