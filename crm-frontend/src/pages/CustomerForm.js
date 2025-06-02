@@ -36,7 +36,7 @@ function CustomerForm() {
     }
 
     try {
-      await axios.post('http://localhost:5000/api/customers', {
+      await axios.post('https://crm-platform-s759.onrender.com/api/customers', {
         name: formData.name,
         email: formData.email,
         totalSpend: Number(formData.totalSpend) || 0,
