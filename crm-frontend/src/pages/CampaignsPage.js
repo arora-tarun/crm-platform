@@ -12,7 +12,7 @@ const CampaignsPage = () => {
     try {
       setLoading(true);
       setError('');
-      const res = await axios.get('http://localhost:5000/api/campaigns', { withCredentials: true });
+      const res = await axios.get('https://crm-frontend-s759.onrender.com/api/campaigns', { withCredentials: true });
       setCampaigns(res.data);
     } catch (err) {
       setError('Failed to load campaigns.');
