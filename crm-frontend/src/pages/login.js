@@ -3,7 +3,7 @@ import { FcGoogle } from 'react-icons/fc';
 
 function Login({ setUser }) {
   const handleLogin = () => {
-    window.location.href = 'https://crm-platform-s759.onrender.com'; // your login endpoint
+    window.location.href = 'https://crm-platform-s759.onrender.com/auth/google'; // your login endpoint
   };
 
   return (
