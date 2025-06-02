@@ -2,13 +2,17 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 
+// Load environment variable for frontend URL
+const FRONTEND_URL = process.env.CLIENT_REDIRECT_URL || 'http://localhost:3000';
+
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 router.get(
   '/google/callback',
   passport.authenticate('google', { failureRedirect: '/auth/failure' }),
   (req, res) => {
-    res.redirect('https://crm-frontend-s759.onrender.com/dashboard');
+    // Redirect to frontend dashboard after successful login
+    res.redirect(`${FRONTEND_URL}/dashboard`);
   }
 );
 
@@ -21,9 +25,10 @@ router.get('/user', (req, res) => {
 });
 
 router.get('/logout', (req, res, next) => {
-  req.logout(function(err) {
+  req.logout(function (err) {
     if (err) return next(err);
-    res.redirect('https://crm-frontend-s759.onrender.com/');
+    // Redirect to frontend homepage after logout
+    res.redirect(`${FRONTEND_URL}/`);
   });
 });
 
