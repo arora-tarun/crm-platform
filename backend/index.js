@@ -52,6 +52,7 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'em
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
+    res.send('✅ CRM backend is live!');
     res.redirect('https://crm-frontend01-s759.onrender.com/dashboard'); // ✅ Frontend dashboard
   }
 );
