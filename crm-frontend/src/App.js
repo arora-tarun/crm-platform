@@ -21,10 +21,8 @@ function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [sidebarVisible, setSidebarVisible] = useState(true);
-
   useEffect(() => {
-  axios.get(`${process.env.REACT_APP_API_BASE_URL}/auth/user`, { withCredentials: true });
-
+  axios.get('https://crm-platform-s759.onrender.com/auth/user', { withCredentials: true })
 
 
       .then(res => {
@@ -32,7 +30,8 @@ function App() {
       })
       .catch(() => setUser(null))
       .finally(() => setLoading(false));
-  }, []);
+}, []);
+
 
   const handleLogout = async () => {
     try {
