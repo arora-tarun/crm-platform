@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 5000;
 
 // Configure CORS to allow frontend origin and allow credentials
 app.use(cors({
-  origin: 'http://localhost:3000',   // React frontend URL
+  origin: 'https://crm-frontend-s759.onrender.com',   // React frontend URL
   credentials: true,                 // Allow cookies to be sent cross-origin
 }));
 
