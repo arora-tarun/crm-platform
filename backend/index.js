@@ -42,7 +42,7 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'em
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
-    res.redirect('http://localhost:3000/dashboard'); // Frontend dashboard
+    res.redirect('https://crm-frontend-s759.onrender.com/dashboard'); // Frontend dashboard
   }
 );
 
