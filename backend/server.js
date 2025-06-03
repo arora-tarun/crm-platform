@@ -24,13 +24,19 @@ mongoose.connect(process.env.MONGO_URI, {
   process.exit(1);
 });
 
-// ======= Middleware =======
+// ======= CORS Setup =======
 app.use(cors({
-  origin: 'https://crm-frontend01.onrender.com',
+  origin: 'https://crm-frontend01-s759.onrender.com',  // ✅ must match frontend URL
   credentials: true,
 }));
 
 app.use(express.json());
+
+// ======= Debug: Log incoming cookies =======
+app.use((req, res, next) => {
+  console.log('🔍 Incoming cookies:', req.headers.cookie);
+  next();
+});
 
 // ======= Session Setup =======
 app.use(session({
@@ -42,10 +48,11 @@ app.use(session({
     collectionName: 'sessions',
   }),
   cookie: {
-    sameSite: 'none',
-    secure: true,
+    sameSite: 'none',  // ✅ Required for cross-origin
+    secure: true,      // ✅ Required on HTTPS (Render)
+    httpOnly: true,
     maxAge: 1000 * 60 * 60 * 24, // 1 day
-  }
+  },
 }));
 
 // ======= Passport Config =======
@@ -53,9 +60,14 @@ require('./config/passport');
 app.use(passport.initialize());
 app.use(passport.session());
 
-// ======= Basic Status Route =======
+// ======= Root Route =======
 app.get('/', (req, res) => {
   res.send('✅ CRM backend is live!');
+});
+
+// ======= Debug Route =======
+app.get('/test-session', (req, res) => {
+  res.send(req.session ? `✅ Session exists: ${req.session.id}` : '❌ No session');
 });
 
 // ======= Auth Routes =======
@@ -64,6 +76,7 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'em
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/auth/failure' }),
   (req, res) => {
+    console.log('✅ Google OAuth success, user:', req.user);
     res.redirect('https://crm-frontend01-s759.onrender.com/dashboard');
   }
 );
@@ -77,9 +90,9 @@ app.get('/auth/user', (req, res) => {
 });
 
 app.get('/auth/logout', (req, res, next) => {
-  req.logout(function(err) {
+  req.logout(function (err) {
     if (err) return next(err);
-    res.clearCookie('connect.sid');
+    res.clearCookie('connect.sid', { path: '/' });
     res.redirect('https://crm-frontend01-s759.onrender.com');
   });
 });
@@ -88,7 +101,7 @@ app.get('/auth/failure', (req, res) => {
   res.status(401).json({ message: 'Authentication failed' });
 });
 
-// ======= Protected API Routes =======
+// ======= Protected Routes =======
 const { ensureAuthenticated } = require('./middlewares/authMiddleware');
 app.use('/api/customers', ensureAuthenticated, require('./routes/customers'));
 app.use('/api/campaigns', ensureAuthenticated, require('./routes/campaigns'));
