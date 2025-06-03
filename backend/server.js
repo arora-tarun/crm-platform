@@ -77,7 +77,7 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/auth/failure' }),
   (req, res) => {
     console.log('✅ Google OAuth success, user:', req.user);
-    res.redirect('https://crm-frontend01-s759.onrender.com/dashboard');
+    res.redirect('https://crm-frontend01.onrender.com/dashboard');
   }
 );
 
@@ -93,7 +93,7 @@ app.get('/auth/logout', (req, res, next) => {
   req.logout(function (err) {
     if (err) return next(err);
     res.clearCookie('connect.sid', { path: '/' });
-    res.redirect('https://crm-frontend01-s759.onrender.com');
+    res.redirect('https://crm-frontend01.onrender.com');
   });
 });
 
