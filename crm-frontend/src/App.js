@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import axios from 'axios';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import LoadingSpinner from './components/LoadingSpinner'; // or the correct path
 
 import Login from './pages/login';
 import Dashboard from './pages/DashboardPage';
@@ -56,7 +57,7 @@ function App() {
         <MainContent sidebarVisible={user ? sidebarVisible : false}>
           <Routes>
             <Route path="/" element={user ? <Navigate to="/dashboard" /> : <Login setUser={setUser} />} />
-            <Route path="/dashboard" element={loading ? <LoadingSpinner /> :muser ? <Dashboard user={user} setUser={setUser} /> : <Navigate to="/" />} />
+            <Route path="/dashboard" element={loading ? <LoadingSpinner /> : user ? <Dashboard user={user} setUser={setUser} /> : <Navigate to="/" />} />
             <Route path="/customers" element={user ? <CustomerList /> : <Navigate to="/" />} />
             <Route path="/add-customer" element={user ? <CustomerForm /> : <Navigate to="/" />} />
             <Route path="/profile" element={user ? <Profile /> : <Navigate to="/" />} />
