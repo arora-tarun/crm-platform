@@ -26,7 +26,7 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // ======= CORS Setup =======
 app.use(cors({
-  origin: 'https://crm-frontend01-s759.onrender.com',  // ✅ must match frontend URL
+  origin: 'https://crm-frontend01.onrender.com',  // ✅ must match frontend URL
   credentials: true,
 }));
 
