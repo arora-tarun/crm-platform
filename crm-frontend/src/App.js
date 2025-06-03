@@ -22,14 +22,19 @@ function App() {
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const baseURL = process.env.REACT_APP_API_BASE_URL;
 
-  useEffect(() => {
+ useEffect(() => {
+  const timer = setTimeout(() => {
     axios.get(`${baseURL}/auth/user`, { withCredentials: true })
       .then(res => {
         setUser(res.data && res.data._id ? res.data : null);
       })
       .catch(() => setUser(null))
       .finally(() => setLoading(false));
-  }, [baseURL]);
+  }, 300); // Add a 300ms delay to allow cookies to settle
+
+  return () => clearTimeout(timer); // Clean up the timeout on unmount
+}, [baseURL]);
+
 
   const handleLogout = async () => {
     try {
