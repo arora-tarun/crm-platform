@@ -28,8 +28,10 @@ mongoose.connect(process.env.MONGO_URI, {
 app.use(cors({
   origin: 'https://crm-frontend01.onrender.com',  // ✅ must match frontend URL
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
-
+app.options('*', cors());
 app.use(express.json());
 
 // ======= Debug: Log incoming cookies =======
