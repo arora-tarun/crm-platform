@@ -56,7 +56,7 @@ function App() {
         <MainContent sidebarVisible={user ? sidebarVisible : false}>
           <Routes>
             <Route path="/" element={user ? <Navigate to="/dashboard" /> : <Login setUser={setUser} />} />
-            <Route path="/dashboard" element={user ? <Dashboard user={user} setUser={setUser} /> : <Navigate to="/" />} />
+            <Route path="/dashboard" element={loading ? <LoadingSpinner /> :muser ? <Dashboard user={user} setUser={setUser} /> : <Navigate to="/" />} />
             <Route path="/customers" element={user ? <CustomerList /> : <Navigate to="/" />} />
             <Route path="/add-customer" element={user ? <CustomerForm /> : <Navigate to="/" />} />
             <Route path="/profile" element={user ? <Profile /> : <Navigate to="/" />} />
